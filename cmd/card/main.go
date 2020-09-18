@@ -38,31 +38,41 @@ func main() {
 				Time:   1592842454,
 				MCC:    "5931",
 				Status: "Valid",
-
+			},
+			card.Transaction{
+				Id:     "4",
+				Bill:   755_49,
+				Time:   1592823454,
+				MCC:    "5931",
+				Status: "Valid",
 			},
 		},
 	}
-	masterPointer := &master
+	//masterPointer := &master
+	//
+	//transaction := card.Transaction{
+	//	Id:     "5",
+	//	Bill:   233_43,
+	//	Time:   1596773221,
+	//	Status: "Valid",
+	//	MCC: "5822",
+	//}
 
-	transaction := card.Transaction{
-		Id:     "5",
-		Bill:   233_43,
-		Time:   1596773221,
-		Status: "Valid",
-		MCC: "5822",
-	}
+	//fmt.Println("MasterCard: ", master)
+	//card.AddTransaction(masterPointer, transaction)
+	//fmt.Println("MasterCard: ", master)
+	//
+	//mcc := []string{"5411", "5812"}
+	//
+	//cashBack := card.SumByMCC(master.Transactions, mcc)
+	//fmt.Println("Cashback sum:", cashBack)
+	//
+	//
+	//category := card.TranslateMCC(master.Transactions[0].MCC)
+	//fmt.Println(category)\
 
-	fmt.Println("MasterCard: ", master)
-	card.AddTransaction(masterPointer, transaction)
-	fmt.Println("MasterCard: ", master)
-
-	mcc := []string{"5411", "5812"}
-
-	cashBack := card.SumByMCC(master.Transactions, mcc)
-	fmt.Println("Cashback sum:", cashBack)
-
-
-	category := card.TranslateMCC(master.Transactions[0].MCC)
-	fmt.Println(category)
+	fmt.Println("Before sort: ", master.Transactions)
+	card.SortTransactions(master.Transactions)
+	fmt.Println("After sort:  ", master.Transactions)
 
 }

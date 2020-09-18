@@ -3,6 +3,7 @@ package card
 
 import (
 	"errors"
+	"sort"
 	"strings"
 )
 
@@ -11,9 +12,9 @@ var ErrCardNotFound = errors.New("card not found")
 
 // Описание банковской карты
 type Card struct {
-	Id           cardId
+	Id cardId
 	Owner
-	Issuer  	 string
+	Issuer       string
 	Balance      int
 	Currency     string
 	Number       string
@@ -46,7 +47,6 @@ type Service struct {
 }
 
 const prefix = "5106 21" //Первые 6 цифр нашего банка
-
 
 // Метод создания экземпляра банковской карты
 func (s *Service) CardIssue(
@@ -121,4 +121,11 @@ func (s *Service) Card(number string) (*Card, error) {
 		}
 	}
 	return nil, ErrCardNotFound
+}
+
+// Функция сортировки транзакций по сумме
+func SortTransactions(transactions []Transaction) {
+	sort.Slice(transactions, func(i, j int) bool {
+		return transactions[i].Bill > transactions[j].Bill
+	})
 }
