@@ -125,7 +125,7 @@ func (s *Service) Card(number string) (*Card, error) {
 
 // Функция сортировки транзакций по сумме
 func SortTransactions(transactions []Transaction) {
-	sort.Slice(transactions, func(i, j int) bool {
+	sort.SliceStable(transactions, func(i, j int) bool {
 		return transactions[i].Bill > transactions[j].Bill
 	})
 }
