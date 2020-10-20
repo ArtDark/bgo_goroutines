@@ -69,6 +69,7 @@ func main() {
 
 	}
 
+	time.Sleep(time.Minute)
 	fmt.Println("Sum", total)
 
 }
