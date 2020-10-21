@@ -60,12 +60,11 @@ func main() {
 
 	for m, i := range monthsMap {
 		wg.Add(1)
-		go func() {
-			sum := stats.Sum(i)
-			fmt.Printf("Sum month %s - %d\n", m, sum)
+		go func(month string, amounts []int64) {
+			sum := stats.Sum(amounts)
+			fmt.Printf("Sum month %s - %d\n", month, sum)
 			wg.Done()
-		}()
-
+		}(m, i)
 	}
 
 	wg.Wait()
