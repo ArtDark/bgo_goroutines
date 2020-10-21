@@ -56,20 +56,18 @@ func main() {
 		monthsMap[months[i]] = transactions[i*partSize : (i+1)*partSize]
 	}
 
-	total := int64(0)
-
 	wg := sync.WaitGroup{}
 
-	for _, i := range monthsMap {
+	for m, i := range monthsMap {
 		wg.Add(1)
 		go func() {
-			total += stats.Sum(i)
+			sum := stats.Sum(i)
+			fmt.Printf("Sum month %s - %d\n", m, sum)
 			wg.Done()
 		}()
 
 	}
 
-	time.Sleep(time.Minute)
-	fmt.Println("Sum", total)
+	wg.Wait()
 
 }
